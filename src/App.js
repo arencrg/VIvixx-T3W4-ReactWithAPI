@@ -18,7 +18,7 @@ class WeatherWeatherLang extends Component {
     super(props);
     this.state = {
       city: "Manila",
-      weatherData: [],
+      weatherData : [],
       myURL1: "http://api.openweathermap.org/data/2.5/weather?q=",
       myURL2: "&appid=3c50495593ac9632d01ab38da3c87495"
     };
@@ -35,7 +35,7 @@ class WeatherWeatherLang extends Component {
             return response => response.json()
           })
           .then(weatherData => {
-            this.setState({weatherData: weatherData})
+            this.setState({weatherData: response})
             console.log(weatherData);
           })
       }
@@ -53,7 +53,10 @@ class WeatherWeatherLang extends Component {
           <h1>{this.state.city}</h1>
           <p> Data taken from <a href = {weatherUrl} target="_blank">here</a></p>
           <p>Display the weather data (from the api) here (in a pretty little table or something)</p>
-          <p> {this.state.weatherData} </p>
+          <div><pre>{JSON.stringify(this.state.weatherData) }</pre></div>
+          <div><pre>{JSON.stringify(this.state.weatherData.weather) }</pre></div>
+          <div><pre>{JSON.stringify(this.state.weatherData.main) }</pre></div>
+          <p> {this.state.weatherData.main} </p>
 
 <hr/>
           <p>Do you want to try a new city?</p>
@@ -66,6 +69,5 @@ class WeatherWeatherLang extends Component {
     }
 
 }
-// end of the Weather Component
 
 export default App;

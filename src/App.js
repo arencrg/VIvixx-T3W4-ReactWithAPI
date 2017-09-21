@@ -12,7 +12,6 @@ class App extends Component {
   }
 }
 
-
 class WeatherWeatherLang extends Component {
   constructor(props) {
     super(props);
@@ -29,14 +28,9 @@ class WeatherWeatherLang extends Component {
     const weatherUrl = `${this.state.myURL1}${this.state.city}${this.state.myURL2}`
         fetch(weatherUrl)
           .then(response => {
-            if (!response.ok) {
-              throw Error("Network request failed")
-            }
-            return response => response.json()
-          })
-          .then(weatherData => {
-            this.setState({weatherData: response})
-            console.log(weatherData);
+              if (!response.ok) {throw Error("Network request failed")}
+              this.setState({weatherData: response.json()})
+              console.log(this.state.weatherData)
           })
       }
 
@@ -53,12 +47,8 @@ class WeatherWeatherLang extends Component {
           <h1>{this.state.city}</h1>
           <p> Data taken from <a href = {weatherUrl} target="_blank">here</a></p>
           <p>Display the weather data (from the api) here (in a pretty little table or something)</p>
-          <div><pre>{JSON.stringify(this.state.weatherData) }</pre></div>
-          <div><pre>{JSON.stringify(this.state.weatherData.weather) }</pre></div>
-          <div><pre>{JSON.stringify(this.state.weatherData.main) }</pre></div>
-          <p> {this.state.weatherData.main} </p>
-
-<hr/>
+          <p>  </p>
+              <hr/>
           <p>Do you want to try a new city?</p>
             <form onSubmit={this.handleSubmit}>
                 <input className="form-input" ref="locationName" type="text"/>

@@ -28,11 +28,12 @@ class WeatherWeatherLang extends Component {
     const weatherUrl = `${this.state.myURL1}${this.state.city}${this.state.myURL2}`
         fetch(weatherUrl)
           .then(response => {
-              if (!response.ok) {throw Error("Network request failed")}
-              this.setState({weatherData: response.json()})
-              console.log(this.state.weatherData)
+            if (!response.ok) {throw Error("Network request failed")}
+            this.setState({weatherData: response.json()});
+            var content = Object.keys(this.state.weatherData).map();
+            console.table(content)
           })
-      }
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -47,7 +48,7 @@ class WeatherWeatherLang extends Component {
           <h1>{this.state.city}</h1>
           <p> Data taken from <a href = {weatherUrl} target="_blank">here</a></p>
           <p>Display the weather data (from the api) here (in a pretty little table or something)</p>
-          <p>  </p>
+          <p>{this.state.weatherData}</p>
               <hr/>
           <p>Do you want to try a new city?</p>
             <form onSubmit={this.handleSubmit}>
